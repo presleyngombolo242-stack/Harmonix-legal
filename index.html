@@ -2,108 +2,155 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Harmonix Market | AI Powered Marketplace</title>
+    <title>Harmonix AI | Environnement de Commande Centralisé</title>
     <style>
         :root {
-            --primary: #e67e22;
-            --dark: #0d1117;
-            --glass: rgba(255, 255, 255, 0.05);
+            --neon-blue: #00d2ff;
+            --neon-purple: #9d50bb;
+            --dark-space: #050505;
+            --glass: rgba(255, 255, 255, 0.1);
         }
-        body { background: var(--dark); color: white; font-family: 'Inter', sans-serif; margin: 0; }
-        
-        /* Design Futuriste style Amazon AI */
-        .hero-ai {
-            height: 400px;
-            background: linear-gradient(45deg, #0d1117, #1a1a2e);
+        body {
+            background: var(--dark-space);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 2px solid var(--primary);
-            text-align: center;
+            height: 100vh;
         }
 
-        .search-container {
-            background: var(--glass);
+        /* Barre latérale des outils (Tes API) */
+        .sidebar {
+            width: 250px;
+            background: rgba(20, 20, 20, 0.8);
+            border-right: 1px solid var(--neon-blue);
             padding: 20px;
-            border-radius: 50px;
-            border: 1px solid var(--primary);
-            width: 60%;
-        }
-
-        .ai-status {
-            color: #00ff00;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* Grille de produits */
-        .market-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 40px;
-        }
-
-        .product-card {
-            background: var(--glass);
-            border-radius: 15px;
-            padding: 15px;
-            border: 1px solid #30363d;
-            transition: 0.3s;
-        }
-
-        .product-card:hover { border-color: var(--primary); transform: scale(1.02); }
-
-        /* Assistant IA flottant */
-        #ai-assistant {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: var(--primary);
-            border-radius: 50%;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .api-status {
+            padding: 10px;
+            border-radius: 5px;
+            background: var(--glass);
+            font-size: 0.8rem;
+            border-left: 3px solid var(--neon-blue);
+        }
+
+        /* Zone de commande centrale */
+        .main-engine {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #050505 100%);
+        }
+
+        .console-output {
+            flex-grow: 1;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-purple);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            color: var(--neon-blue);
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+            background: var(--glass);
+            padding: 15px;
+            border-radius: 15px;
+            border: 1px solid var(--neon-blue);
+        }
+
+        input {
+            flex-grow: 1;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.1rem;
+            outline: none;
+        }
+
+        button {
+            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
             cursor: pointer;
-            box-shadow: 0 0 20px var(--primary);
+            font-weight: bold;
+        }
+
+        .ai-node {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            background: var(--neon-purple);
+            font-size: 0.7rem;
         }
     </style>
 </head>
 <body>
 
-    <header style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">HARMONIX AI</div>
-        <nav>Market | Crypto | Tech | Sécurité</nav>
-    </header>
+    <div class="sidebar">
+        <h2 style="color: var(--neon-blue)">HARMONIX AI</h2>
+        <div class="api-status">● GROQ : READY</div>
+        <div class="api-status">● GEMINI : STANDBY</div>
+        <div class="api-status">● RUNWAY : ACTIVE</div>
+        <div class="api-status">● ELEVENLABS : LOADED</div>
+        <hr style="border-color: #333">
+        <p style="font-size: 0.8rem; color: #777;">Système de Presley Ngombolo</p>
+    </div>
 
-    <section class="hero-ai">
-        <div class="search-container">
-            <div class="ai-status">● Système IA Harmonix Actif</div>
-            <h1 style="font-size: 2.5rem;">Recherchez dans le futur</h1>
-            <input type="text" placeholder="Demandez à l'IA : Trouve-moi une perruque bouclée..." style="width: 80%; background: none; border: none; color: white; font-size: 1.2rem; outline: none; margin-top: 10px;">
+    <div class="main-engine">
+        <div class="console-output" id="console">
+            <div>[SYSTEM] : Environnement Harmonix initialisé...</div>
+            <div>[SYSTEM] : Prêt pour la génération multi-modale (Texte/Vidéo/Audio).</div>
+            <div id="ai-response"></div>
         </div>
-    </section>
 
-    <div class="market-grid">
-        <div class="product-card">
-            <div style="height: 200px; background: #1f2937; border-radius: 10px; margin-bottom: 10px; overflow: hidden;">
-                <img src="https://images.pexels.com/photos/3751541/pexels-photo-3751541.jpeg?auto=compress&cs=tinysrgb&w=400" style="width:100%; height:100%; object-fit:cover;">
-            </div>
-            <h4>Perruque Excellence AI</h4>
-            <p style="color: var(--primary);">0.0025 BTC / 75.000 CFA</p>
-            <button style="width:100%; padding:10px; background:var(--primary); border:none; color:white; border-radius:5px; cursor:pointer;">Acheter maintenant</button>
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Demandez n'importe quoi (Génère une vidéo, analyse ce code, crée un texte...)">
+            <button onclick="processCommand()">EXECUTER</button>
+        </div>
+        
+        <div style="margin-top: 15px; text-align: center;">
+            <span class="ai-node">LLM : Groq / Llama 3</span>
+            <span class="ai-node">Vision : Gemini Pro</span>
+            <span class="ai-node">Vidéo : Runway Gen-2</span>
         </div>
     </div>
 
-    <div id="ai-assistant">🤖</div>
+    <script>
+        function processCommand() {
+            const input = document.getElementById('userInput').value;
+            const consoleBox = document.getElementById('console');
+            
+            if(!input) return;
 
-    <footer style="text-align: center; padding: 40px; border-top: 1px solid #30363d; margin-top: 50px;">
-        <p>© 2026 Harmonix Market - Infrastructure Sécurisée</p>
-        <p>Développé par <span style="color: var(--primary);">Presley Exaucé Ngombolo</span></p>
-    </footer>
-
+            // Simuler l'activité de l'IA
+            const timestamp = new Date().toLocaleTimeString();
+            consoleBox.innerHTML += `<div style="color:white; margin-top:10px;">> [USER ${timestamp}]: ${input}</div>`;
+            
+            // Logique de routage (C'est ici qu'on appellera tes clés via un serveur)
+            if(input.toLowerCase().includes("vidéo")) {
+                consoleBox.innerHTML += `<div style="color:#f1c40f;">[RUNWAY] : Analyse de la demande vidéo en cours...</div>`;
+            } else if(input.toLowerCase().includes("prix") || input.toLowerCase().includes("market")) {
+                consoleBox.innerHTML += `<div style="color:#2ecc71;">[COINMARKETCAP] : Récupération des données marché...</div>`;
+            } else {
+                consoleBox.innerHTML += `<div style="color:var(--neon-purple);">[GROQ/GEMINI] : Traitement de la réflexion profonde...</div>`;
+            }
+            
+            document.getElementById('userInput').value = "";
+            consoleBox.scrollTop = consoleBox.scrollHeight;
+        }
+    </script>
 </body>
 </html>
