@@ -3,30 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harmonix Server — Presley Ngombolo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Harmonix Luxury Wigs — Boutique Dakar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        :root { --bg: #050a0e; --surf: #0d1117; --acc: #00e5ff; --txt: #f0f6fc; --sec: #8b949e; --bord: #30363d; }
+        :root {
+            --gold: #d4af37;
+            --dark: #0a0a0a;
+            --white: #ffffff;
+            --gray: #1a1a1a;
+            --text-gray: #a0a0a0;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--txt); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-        .container { max-width: 600px; width: 100%; background: var(--surf); border: 1px solid var(--bord); border-radius: 12px; padding: 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        h1 { font-size: 24px; margin-bottom: 10px; }
-        h1 span { color: var(--acc); }
-        .status { display: inline-block; background: rgba(0,225,255,0.1); color: var(--acc); padding: 5px 15px; border-radius: 20px; font-size: 12px; margin-bottom: 20px; border: 1px solid var(--acc); }
-        p { color: var(--sec); margin-bottom: 20px; }
-        footer { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--bord); font-size: 12px; }
-        .name { color: #7b2fff; font-weight: bold; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--dark); color: var(--white); line-height: 1.6; }
+
+        /* Navigation */
+        nav { padding: 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--gray); position: sticky; top: 0; background: rgba(10,10,10,0.9); z-index: 1000; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); }
+
+        /* Hero Section */
+        .hero { height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1595475243692-392820991678?q=80&w=1000&auto=format&fit=crop'); background-size: cover; background-position: center; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 10px; }
+        .hero p { color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; }
+
+        /* Boutique Gallery */
+        .shop-container { padding: 50px 20px; max-width: 1200px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        
+        .product-card { background: var(--gray); border-radius: 10px; overflow: hidden; transition: transform 0.3s; border: 1px solid transparent; }
+        .product-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        .product-img { width: 100%; height: 350px; background-color: #333; object-fit: cover; }
+        
+        .product-info { padding: 20px; text-align: center; }
+        .product-name { font-size: 1.2rem; margin-bottom: 10px; }
+        .price { color: var(--gold); font-weight: bold; font-size: 1.1rem; }
+
+        /* JavaScript Toggle Button */
+        .btn-contact { margin-top: 15px; background: var(--gold); color: var(--dark); padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; transition: 0.3s; }
+        .btn-contact:hover { background: var(--white); }
+
+        /* Footer */
+        footer { padding: 40px 20px; text-align: center; border-top: 1px solid var(--gray); margin-top: 50px; }
+        .dev-credit { font-size: 0.8rem; color: var(--text-gray); margin-top: 10px; }
+        .dev-name { color: var(--gold); font-weight: 600; text-decoration: none; }
+
+        /* Animation class */
+        .fade-in { animation: fadeIn 1.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="status">SYSTÈME OPÉRATIONNEL</div>
-        <h1>Harmonix <span>Server</span></h1>
-        <p>Bienvenue sur l'infrastructure officielle. Le serveur est actuellement en ligne et sécurisé.</p>
-        <footer>
-            Développé par <span class="name">Presley Ngombolo</span><br>
-            © 2026 — Dakar, Sénégal
-        </footer>
+
+    <nav>
+        <div class="logo">Harmonix Luxury</div>
+        <div class="status-badge" style="font-size: 0.7rem; border: 1px solid var(--gold); padding: 5px; border-radius: 5px;">DAKAR COLLECTION</div>
+    </nav>
+
+    <section class="hero fade-in">
+        <h1>Perruques d'Excellence</h1>
+        <p>L'élégance africaine à votre portée</p>
+    </section>
+
+    <div class="shop-container">
+        <div class="grid" id="product-grid">
+            </div>
     </div>
+
+    <footer>
+        <p>© 2026 Harmonix Luxury Wigs. Tous droits réservés.</p>
+        <p class="dev-credit">Développé avec passion par <a href="#" class="dev-name">Presley Ngombolo</a></p>
+    </footer>
+
+    <script>
+        // On simule une base de données de perruques
+        const perruques = [
+            { name: "Lace Frontale Brésilienne", price: "75.000 CFA", img: "https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=80&w=500&auto=format&fit=crop" },
+            { name: "Bob Pur Noir", price: "45.000 CFA", img: "https://images.unsplash.com/photo-1560869713-7d0a29430803?q=80&w=500&auto=format&fit=crop" },
+            { name: "Bouclée Royale", price: "90.000 CFA", img: "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?q=80&w=500&auto=format&fit=crop" },
+            { name: "Perruque Customisée Gold", price: "120.000 CFA", img: "https://images.unsplash.com/photo-1595475243692-392820991678?q=80&w=500&auto=format&fit=crop" }
+        ];
+
+        const grid = document.getElementById('product-grid');
+
+        // Génération automatique des produits
+        perruques.forEach(item => {
+            const card = `
+                <div class="product-card">
+                    <img src="${item.img}" alt="${item.name}" class="product-img">
+                    <div class="product-info">
+                        <div class="product-name">${item.name}</div>
+                        <div class="price">${item.price}</div>
+                        <button class="btn-contact" onclick="contactWhatsApp('${item.name}')">Commander sur WhatsApp</button>
+                    </div>
+                </div>
+            `;
+            grid.innerHTML += card;
+        });
+
+        function contactWhatsApp(nomProduit) {
+            const message = `Bonjour Presley, je suis intéressé(e) par la perruque : ${nomProduit}`;
+            const url = `https://wa.me/221XXXXXXX?text=${encodeURIComponent(message)}`; // Remplace par ton numéro
+            window.open(url, '_blank');
+        }
+    </script>
 </body>
 </html>
