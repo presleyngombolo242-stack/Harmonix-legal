@@ -2,194 +2,99 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Harmonix AI | Environnement de Commande Centralisé</title>
+    <title>Harmonix OS | Intelligence Multimodale</title>
     <style>
-        :root {
-            --neon-blue: #00d2ff;
-            --neon-purple: #9d50bb;
-            --dark-space: #050505;
-            --glass: rgba(255, 255, 255, 0.1);
-        }
-        body {
-            background: var(--dark-space);
-            color: white;
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            display: flex;
-            height: 100vh;
-        }
+        :root { --neon: #00ff88; --bg: #0a0a0a; --panel: #151515; }
+        body { background: var(--bg); color: white; font-family: 'Inter', sans-serif; margin: 0; overflow: hidden; }
+        
+        /* Layout type "Grok/Claude" */
+        .app-container { display: grid; grid-template-columns: 260px 1fr; height: 100vh; }
+        
+        .sidebar { background: var(--panel); border-right: 1px solid #333; padding: 20px; }
+        .main-chat { display: flex; flex-direction: column; position: relative; }
 
-        /* Barre latérale des outils (Tes API) */
-        .sidebar {
-            width: 250px;
-            background: rgba(20, 20, 20, 0.8);
-            border-right: 1px solid var(--neon-blue);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
+        .chat-window { flex-grow: 1; overflow-y: auto; padding: 40px 15%; display: flex; flex-direction: column; gap: 20px; }
+        
+        /* Bulles de message style "Pro" */
+        .message { max-width: 80%; padding: 15px 20px; border-radius: 12px; line-height: 1.6; }
+        .user-msg { align-self: flex-end; background: #222; border: 1px solid #444; }
+        .ai-msg { align-self: flex-start; background: transparent; border-left: 2px solid var(--neon); }
 
-        .api-status {
-            padding: 10px;
-            border-radius: 5px;
-            background: var(--glass);
-            font-size: 0.8rem;
-            border-left: 3px solid var(--neon-blue);
+        /* Barre de commande flottante */
+        .input-wrapper { padding: 20px 15%; background: linear-gradient(transparent, var(--bg)); }
+        .input-box { 
+            background: #1e1e1e; border: 1px solid #333; border-radius: 24px; 
+            padding: 15px 25px; display: flex; align-items: center; gap: 15px;
+            transition: 0.3s;
         }
-
-        /* Zone de commande centrale */
-        .main-engine {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            padding: 30px;
-            background: radial-gradient(circle at center, #1a1a2e 0%, #050505 100%);
-        }
-
-        .console-output {
-            flex-grow: 1;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid var(--neon-purple);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
-            overflow-y: auto;
-            font-family: 'Courier New', monospace;
-            color: var(--neon-blue);
-        }
-
-        .input-area {
-            display: flex;
-            gap: 10px;
-            background: var(--glass);
-            padding: 15px;
-            border-radius: 15px;
-            border: 1px solid var(--neon-blue);
-        }
-
-        input {
-            flex-grow: 1;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.1rem;
-            outline: none;
-        }
-
-        button {
-            background: linear-gradient(to right, var(--neon-blue), var(--neon-purple));
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .ai-node {
-            display: inline-block;
-            margin: 5px;
-            padding: 5px 10px;
-            border-radius: 15px;
-            background: var(--neon-purple);
-            font-size: 0.7rem;
-        }
+        .input-box:focus-within { border-color: var(--neon); box-shadow: 0 0 15px rgba(0,255,136,0.2); }
+        
+        input { flex-grow: 1; background: none; border: none; color: white; font-size: 16px; outline: none; }
+        
+        .btn-exec { background: var(--neon); color: black; border: none; padding: 8px 20px; border-radius: 18px; font-weight: bold; cursor: pointer; }
+        
+        /* Indicateurs d'IA actives */
+        .status-bar { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: #666; margin-bottom: 5px; }
     </style>
 </head>
 <body>
-
-    <div class="sidebar">
-        <h2 style="color: var(--neon-blue)">HARMONIX AI</h2>
-        <div class="api-status">● GROQ : READY</div>
-        <div class="api-status">● GEMINI : STANDBY</div>
-        <div class="api-status">● RUNWAY : ACTIVE</div>
-        <div class="api-status">● ELEVENLABS : LOADED</div>
-        <hr style="border-color: #333">
-        <p style="font-size: 0.8rem; color: #777;">Système de Presley Ngombolo</p>
-    </div>
-
-    <div class="main-engine">
-        <div class="console-output" id="console">
-            <div>[SYSTEM] : Environnement Harmonix initialisé...</div>
-            <div>[SYSTEM] : Prêt pour la génération multi-modale (Texte/Vidéo/Audio).</div>
-            <div id="ai-response"></div>
-        </div>
-
-        <div class="input-area">
-            <input type="text" id="userInput" placeholder="Demandez n'importe quoi (Génère une vidéo, analyse ce code, crée un texte...)">
-            <button onclick="processCommand()">EXECUTER</button>
+    <div class="app-container">
+        <div class="sidebar">
+            <h2 style="color: var(--neon)">HARMONIX</h2>
+            <p style="font-size: 12px; color: #888">Système Opérationnel v2.0</p>
+            <div style="margin-top: 50px;">
+                <div class="status-bar">Moteur : Groq Llama 3</div>
+                <div class="status-bar">Vision : Gemini Pro</div>
+                <div class="status-bar">Audio : ElevenLabs</div>
+            </div>
         </div>
         
-        <div style="margin-top: 15px; text-align: center;">
-            <span class="ai-node">LLM : Groq / Llama 3</span>
-            <span class="ai-node">Vision : Gemini Pro</span>
-            <span class="ai-node">Vidéo : Runway Gen-2</span>
+        <div class="main-chat">
+            <div class="chat-window" id="chat">
+                <div class="message ai-msg">
+                    Bonjour Presley. L'environnement Harmonix est synchronisé avec vos clés API. 
+                    Je suis prêt à générer du contenu marketing, analyser votre catalogue ou traiter des données.
+                </div>
+            </div>
+
+            <div class="input-wrapper">
+                <div class="input-box">
+                    <input type="text" id="userInput" placeholder="Envoyez une commande (ex: Génère une pub pour la perruque Bob)">
+                    <button class="btn-exec" onclick="sendMessage()">ENVOYER</button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        function processCommand() {
-            const input = document.getElementById('userInput').value;
-            const consoleBox = document.getElementById('console');
-            
-            if(!input) return;
+        async function sendMessage() {
+            const input = document.getElementById('userInput');
+            const chat = document.getElementById('chat');
+            if(!input.value) return;
 
-            // Simuler l'activité de l'IA
-            const timestamp = new Date().toLocaleTimeString();
-            consoleBox.innerHTML += `<div style="color:white; margin-top:10px;">> [USER ${timestamp}]: ${input}</div>`;
+            // Ajout message utilisateur
+            chat.innerHTML += `<div class="message user-msg">${input.value}</div>`;
             
-            // Logique de routage (C'est ici qu'on appellera tes clés via un serveur)
-            if(input.toLowerCase().includes("vidéo")) {
-                consoleBox.innerHTML += `<div style="color:#f1c40f;">[RUNWAY] : Analyse de la demande vidéo en cours...</div>`;
-            } else if(input.toLowerCase().includes("prix") || input.toLowerCase().includes("market")) {
-                consoleBox.innerHTML += `<div style="color:#2ecc71;">[COINMARKETCAP] : Récupération des données marché...</div>`;
-            } else {
-                consoleBox.innerHTML += `<div style="color:var(--neon-purple);">[GROQ/GEMINI] : Traitement de la réflexion profonde...</div>`;
+            // Animation de chargement
+            const loadingId = "loading-" + Date.now();
+            chat.innerHTML += `<div class="message ai-msg" id="${loadingId}">[Réflexion en cours...]</div>`;
+            chat.scrollTop = chat.scrollHeight;
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/ask-ai', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ message: input.value })
+                });
+                const data = await response.json();
+                
+                // Ici on affiche la réponse réelle
+                document.getElementById(loadingId).innerText = data.choices[0].message.content;
+            } catch (e) {
+                document.getElementById(loadingId).innerText = "Erreur de synchronisation avec le serveur HP.";
             }
-            
-            document.getElementById('userInput').value = "";
-            consoleBox.scrollTop = consoleBox.scrollHeight;
+            input.value = "";
         }
     </script>
 </body>
 </html>
-<script>
-async function processCommand() {
-    const input = document.getElementById('userInput').value;
-    const consoleBox = document.getElementById('console');
-    const responseArea = document.getElementById('ai-response');
-    
-    if(!input) return;
-
-    // 1. Afficher la question de l'utilisateur
-    const timestamp = new Date().toLocaleTimeString();
-    consoleBox.innerHTML += `<div style="color:white; margin-top:10px;">> [USER ${timestamp}]: ${input}</div>`;
-    
-    // 2. Afficher que l'IA travaille (Synchronisation)
-    responseArea.innerHTML = `<div style="color:#f1c40f;">[SYSTEM] : Connexion au cerveau Groq/Gemini en cours...</div>`;
-    
-    try {
-        // 3. APPEL RÉEL À TON SERVEUR (Le pont vers ton HP)
-        const response = await fetch('http://127.0.0.1:5000/ask-ai', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: input })
-        });
-
-        const data = await response.json();
-
-        // 4. Afficher la vraie réponse de l'IA
-        const aiText = data.choices[0].message.content;
-        responseArea.innerHTML = `<div style="color:var(--neon-blue); margin-top:10px;">[HARMONIX AI] : ${aiText}</div>`;
-        
-    } catch (error) {
-        // En cas d'erreur de connexion
-        responseArea.innerHTML = `<div style="color:red;">[ERREUR] : Impossible de joindre le serveur. Vérifie que ton terminal noir est bien ouvert !</div>`;
-    }
-
-    document.getElementById('userInput').value = "";
-    consoleBox.scrollTop = consoleBox.scrollHeight;
-}
-</script>
-
