@@ -2,173 +2,108 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harmonix Market | Marketplace Africain</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Harmonix Market | AI Powered Marketplace</title>
     <style>
         :root {
-            --primary: #e67e22; /* Orange chaleureux */
-            --dark: #1a1a1a;
-            --light: #f8f9fa;
-            --white: #ffffff;
-            --accent: #27ae60; /* Vert pour les succès/disponibilité */
-            --shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --primary: #e67e22;
+            --dark: #0d1117;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+        body { background: var(--dark); color: white; font-family: 'Inter', sans-serif; margin: 0; }
+        
+        /* Design Futuriste style Amazon AI */
+        .hero-ai {
+            height: 400px;
+            background: linear-gradient(45deg, #0d1117, #1a1a2e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px solid var(--primary);
+            text-align: center;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Poppins', sans-serif; background-color: var(--light); color: var(--dark); }
-
-        /* Header & Nav */
-        header { background: var(--white); padding: 15px 5%; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
-        .nav-top { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
-        .logo { font-size: 1.6rem; font-weight: 800; color: var(--primary); text-decoration: none; text-transform: uppercase; }
-        .search-bar { flex-grow: 0.4; padding: 10px 20px; border: 1px solid #ddd; border-radius: 25px; outline: none; }
-
-        /* Hero Banner */
-        .hero { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1523450001312-faa4e2e31f0f?q=80&w=1200&auto=format&fit=crop');
-            height: 350px; background-size: cover; background-position: center;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: white; text-align: center; padding: 20px;
+        .search-container {
+            background: var(--glass);
+            padding: 20px;
+            border-radius: 50px;
+            border: 1px solid var(--primary);
+            width: 60%;
         }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        .hero p { font-size: 1.1rem; color: var(--primary); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
 
-        /* Categories Section */
-        .categories-nav { background: var(--dark); overflow-x: auto; white-space: nowrap; padding: 10px 5%; }
-        .categories-nav a { color: white; text-decoration: none; margin-right: 25px; font-size: 0.9rem; transition: 0.3s; }
-        .categories-nav a:hover { color: var(--primary); }
+        .ai-status {
+            color: #00ff00;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-        /* Product Grid */
-        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .section-title { margin-bottom: 30px; border-left: 5px solid var(--primary); padding-left: 15px; }
-        
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; }
-        
-        .card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); transition: 0.3s; position: relative; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-10px); }
-        
-        .card-img { width: 100%; height: 250px; object-fit: cover; }
-        .card-body { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
-        
-        .category-tag { font-size: 0.7rem; color: var(--primary); font-weight: 700; text-transform: uppercase; }
-        .product-name { font-size: 1rem; font-weight: 600; margin: 5px 0; height: 48px; overflow: hidden; }
-        .vendor { font-size: 0.8rem; color: #777; margin-bottom: 10px; }
-        .price { font-size: 1.2rem; font-weight: 800; color: var(--dark); margin-top: auto; }
-        
-        .badge { position: absolute; top: 10px; left: 10px; padding: 4px 10px; font-size: 0.7rem; font-weight: bold; border-radius: 5px; color: white; }
-        .badge-promo { background: #e74c3c; }
-        .badge-popular { background: #f39c12; }
-        .badge-new { background: #27ae60; }
+        /* Grille de produits */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+        }
 
-        .btn-add { background: var(--dark); color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; margin-top: 15px; font-weight: 600; transition: 0.3s; }
-        .btn-add:hover { background: var(--primary); }
+        .product-card {
+            background: var(--glass);
+            border-radius: 15px;
+            padding: 15px;
+            border: 1px solid #30363d;
+            transition: 0.3s;
+        }
 
-        /* Footer */
-        footer { background: var(--dark); color: white; padding: 60px 5% 20px; margin-top: 80px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid #333; padding-bottom: 40px; }
-        .footer-logo { font-size: 1.5rem; color: var(--primary); margin-bottom: 15px; }
-        .footer-links h4 { margin-bottom: 20px; color: var(--white); }
-        .footer-links ul { list-style: none; }
-        .footer-links li { margin-bottom: 10px; font-size: 0.9rem; color: #bbb; cursor: pointer; }
-        
-        .footer-bottom { text-align: center; padding-top: 30px; font-size: 0.8rem; color: #777; }
-        .dev-highlight { color: var(--primary); font-weight: bold; }
+        .product-card:hover { border-color: var(--primary); transform: scale(1.02); }
+
+        /* Assistant IA flottant */
+        #ai-assistant {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--primary);
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="nav-top">
-            <a href="#" class="logo">Harmonix Market</a>
-            <input type="text" class="search-bar" placeholder="Rechercher perruques, mode, tech...">
-            <div style="font-weight: 600; font-size: 0.9rem;">Favoris | Panier (0)</div>
-        </div>
+    <header style="padding: 20px; display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-size: 1.5rem; font-weight: bold; color: var(--primary);">HARMONIX AI</div>
+        <nav>Market | Crypto | Tech | Sécurité</nav>
     </header>
 
-    <div class="categories-nav">
-        <a href="#">TOUT</a>
-        <a href="#">PERRUQUES & WIGS</a>
-        <a href="#">MODE & VÊTEMENTS</a>
-        <a href="#">BEAUTÉ & COSMÉTIQUE</a>
-        <a href="#">TECH</a>
-        <a href="#">MAISON</a>
-    </div>
-
-    <section class="hero">
-        <p>Collection Exclusive</p>
-        <h1>Perruques Premium</h1>
-        <div style="margin-top: 20px;">
-            <span style="margin: 0 10px;">✅ Wave</span>
-            <span style="margin: 0 10px;">✅ Orange Money</span>
-            <span style="margin: 0 10px;">✅ Cash</span>
+    <section class="hero-ai">
+        <div class="search-container">
+            <div class="ai-status">● Système IA Harmonix Actif</div>
+            <h1 style="font-size: 2.5rem;">Recherchez dans le futur</h1>
+            <input type="text" placeholder="Demandez à l'IA : Trouve-moi une perruque bouclée..." style="width: 80%; background: none; border: none; color: white; font-size: 1.2rem; outline: none; margin-top: 10px;">
         </div>
     </section>
 
-    <div class="container">
-        <h2 class="section-title">Sélection du Moment</h2>
-        <div class="grid" id="product-grid">
+    <div class="market-grid">
+        <div class="product-card">
+            <div style="height: 200px; background: #1f2937; border-radius: 10px; margin-bottom: 10px; overflow: hidden;">
+                <img src="https://images.pexels.com/photos/3751541/pexels-photo-3751541.jpeg?auto=compress&cs=tinysrgb&w=400" style="width:100%; height:100%; object-fit:cover;">
             </div>
+            <h4>Perruque Excellence AI</h4>
+            <p style="color: var(--primary);">0.0025 BTC / 75.000 CFA</p>
+            <button style="width:100%; padding:10px; background:var(--primary); border:none; color:white; border-radius:5px; cursor:pointer;">Acheter maintenant</button>
+        </div>
     </div>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-links">
-                <div class="footer-logo">Harmonix Market</div>
-                <p>Le marketplace africain de confiance. [span_2](start_span)Achetez et vendez partout en Afrique de l'Ouest[span_2](end_span).</p>
-                <p style="margin-top: 15px;">📍 Dakar, Sénégal</p>
-            </div>
-            <div class="footer-links">
-                <h4>Acheteurs</h4>
-                <ul>
-                    <li>Comment commander</li>
-                    <li>Suivi de commande</li>
-                    <li>Retours & remboursements</li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4>Vendeurs</h4>
-                <ul>
-                    <li>Créer ma boutique</li>
-                    <li>Guide vendeur</li>
-                    <li>Devenir partenaire</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2026 Harmonix Market. Tous droits réservés.</p>
-            [span_3](start_span)<p>Développé par <span class="dev-highlight">Presley Exaucé Ngombolo</span>[span_3](end_span)</p>
-        </div>
+    <div id="ai-assistant">🤖</div>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid #30363d; margin-top: 50px;">
+        <p>© 2026 Harmonix Market - Infrastructure Sécurisée</p>
+        <p>Développé par <span style="color: var(--primary);">Presley Exaucé Ngombolo</span></p>
     </footer>
 
-    <script>
-        // Données extraites de ton catalogue PDF
-        const products = [
-            { name: "Lace Frontale Brésilienne 26\"", price: "75.000 CFA", cat: "PERRUQUES", vendor: "KadiShop 🇸🇳", badge: "PROMO", bClass: "badge-promo", img: "https://images.unsplash.com/photo-1620331311520-246422fd82f9?w=400" },
-            { name: "Robe Wax Ankara Moderne", price: "28.000 CFA", cat: "MODE", vendor: "AfroStyle", badge: "NOUVEAU", bClass: "badge-new", img: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400" },
-            { name: "Chargeur Solaire 20000mAh", price: "38.000 CFA", cat: "TECH", vendor: "SolarTechSN", badge: "POPULAIRE", bClass: "badge-popular", img: "https://images.unsplash.com/photo-1617576621330-3cc70612986b?w=400" },
-            { name: "Bouclée Royale 20\"", price: "88.000 CFA", cat: "PERRUQUES", vendor: "LuxeAbidjan", badge: "PROMO", bClass: "badge-promo", img: "https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=400" },
-            { name: "Panier Osier Artisanal", price: "14.000 CFA", cat: "MAISON", vendor: "Artisan SN", badge: "POPULAIRE", bClass: "badge-popular", img: "https://images.unsplash.com/photo-1590736704728-f4730bb30770?w=400" },
-            { name: "Écouteurs Bluetooth Sans Fil", price: "22.000 CFA", cat: "TECH", vendor: "TechLagos", badge: "PROMO", bClass: "badge-promo", img: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" }
-        ];
-
-        const grid = document.getElementById('product-grid');
-
-        products.forEach(p => {
-            grid.innerHTML += `
-                <div class="card">
-                    <div class="badge ${p.bClass}">${p.badge}</div>
-                    <img src="${p.img}" alt="${p.name}" class="card-img">
-                    <div class="card-body">
-                        <span class="category-tag">${p.cat}</span>
-                        <h4 class="product-name">${p.name}</h4>
-                        <p class="vendor">Par ${p.vendor}</p>
-                        <div class="price">${p.price}</div>
-                        <button class="btn-add">+ Panier</button>
-                    </div>
-                </div>
-            `;
-        });
-    </script>
 </body>
 </html>
