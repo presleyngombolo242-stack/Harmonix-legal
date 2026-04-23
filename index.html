@@ -3,234 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Presley Exaucé Market - Tout ce que tu désires, exaucé !</title>
+    <title>AfroMarket by Presley - L'excellence africaine</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', system-ui, sans-serif; }
-        .hero-bg {
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://picsum.photos/id/1015/1920/1080') center/cover no-repeat;
-        }
-        .product-card {
-            transition: all 0.3s ease;
-        }
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        }
-        .nav-link { transition: color 0.3s; }
-        .nav-link:hover { color: #FF6600; }
+        :root { --pagne-gold: #D4AF37; --pagne-red: #8B0000; --pagne-green: #006400; }
+        body { font-family: 'Trebuchet MS', sans-serif; background-color: #fffaf0; }
+        .afro-gradient { background: linear-gradient(135deg, var(--pagne-red), #333); }
+        .product-card:hover { transform: scale(1.03); transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .category-icon { background: #fef3c7; color: #92400e; }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="text-gray-900">
 
-    <!-- HEADER -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-3">
-            <div class="flex items-center justify-between">
-                <!-- Logo + Nom -->
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white text-2xl font-bold">P</div>
-                    <div>
-                        <h1 class="text-2xl font-bold text-orange-600">Presley Exaucé</h1>
-                        <p class="text-xs text-gray-500 -mt-1">Market</p>
-                    </div>
-                </div>
+    <div class="bg-yellow-500 text-black text-center py-1 text-xs font-bold uppercase tracking-widest">
+        Livraison Rapide sur Dakar • Paiement par Wave & Orange Money
+    </div>
 
-                <!-- Recherche -->
-                <div class="flex-1 max-w-2xl mx-6">
-                    <div class="relative">
-                        <input id="searchInput" type="text" placeholder="Rechercher des produits, marques ou vendeurs..." 
-                               class="w-full border border-gray-300 rounded-full py-3 px-6 pl-12 focus:outline-none focus:border-orange-500 text-sm">
-                        <i class="fas fa-search absolute left-5 top-3.5 text-gray-400"></i>
-                    </div>
-                </div>
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="text-3xl font-black text-red-800">AFRO<span class="text-green-700">MARKET</span></div>
+            </div>
+            
+            <div class="hidden md:flex flex-1 mx-10">
+                <input type="text" placeholder="Rechercher un produit africain..." class="w-full border-2 border-yellow-600 rounded-lg px-4 py-2 outline-none">
+            </div>
 
-                <!-- Icons -->
-                <div class="flex items-center gap-6 text-xl">
-                    <a href="#" class="relative"><i class="fas fa-heart text-gray-600 hover:text-red-500"></i></a>
-                    <a href="#" id="cartBtn" class="relative">
-                        <i class="fas fa-shopping-cart text-gray-600 hover:text-orange-500"></i>
-                        <span id="cartCount" class="absolute -top-2 -right-2 bg-orange-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">0</span>
-                    </a>
-                    <a href="#" class="flex items-center gap-2 text-sm font-medium">
-                        <i class="fas fa-user-circle text-2xl"></i>
-                        <span>Compte</span>
-                    </a>
+            <div class="flex items-center gap-5 text-gray-700">
+                <i class="fas fa-heart"></i>
+                <div class="relative">
+                    <i class="fas fa-shopping-basket text-2xl"></i>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full px-1">0</span>
                 </div>
+                <div class="text-sm font-bold border-l pl-5 border-gray-300">Présentation EC2LT</div>
             </div>
         </div>
-
-        <!-- Navigation catégories -->
-        <nav class="bg-gray-900 text-white py-3">
-            <div class="max-w-7xl mx-auto px-4 flex gap-8 text-sm overflow-x-auto">
-                <a href="#" class="nav-link whitespace-nowrap">Électronique</a>
-                <a href="#" class="nav-link whitespace-nowrap">Mode & Beauté</a>
-                <a href="#" class="nav-link whitespace-nowrap">Supermarché</a>
-                <a href="#" class="nav-link whitespace-nowrap">Maison & Jardin</a>
-                <a href="#" class="nav-link whitespace-nowrap">Téléphones</a>
-                <a href="#" class="nav-link whitespace-nowrap">Vendeurs locaux</a>
-                <a href="#" class="nav-link text-orange-400 font-medium">Devenir vendeur</a>
-            </div>
-        </nav>
     </header>
 
-    <!-- HERO BANNER -->
-    <section class="hero-bg h-screen flex items-center text-white">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="max-w-lg">
-                <h2 class="text-5xl font-bold leading-tight mb-4">Tout ce que tu désires,<br><span class="text-orange-400">exaucé par Presley !</span></h2>
-                <p class="text-xl mb-8">Marketplace multi-vendeurs à Dakar. Achète tout en un clic : mode, électronique, beauté, alimentation...</p>
-                <div class="flex gap-4">
-                    <button onclick="scrollToProducts()" 
-                            class="bg-orange-500 hover:bg-orange-600 px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-3">
-                        Commencer à acheter <i class="fas fa-arrow-right"></i>
-                    </button>
-                    <button onclick="window.location.href='#vendeurs'" 
-                            class="border-2 border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full font-semibold text-lg">
-                        Devenir vendeur
-                    </button>
-                </div>
+    <section class="afro-gradient text-white py-20 px-6 text-center relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-5xl font-extrabold mb-4">Le Marché des <span class="text-yellow-400">Terroirs Africains</span></h1>
+            <p class="text-lg mb-8 opacity-90">Découvrez l'élégance des perruques brésiliennes et la saveur des plats de Dakar, sélectionnés par Presley.</p>
+            <button class="bg-yellow-500 text-black px-10 py-4 rounded-full font-bold hover:bg-yellow-400 transition">VOIR LE CATALOGUE</button>
+        </div>
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: url('https://www.transparenttextures.com/patterns/az-subtle.png');"></div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 py-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="category-icon p-6 rounded-xl text-center cursor-pointer">
+                <i class="fas fa-crown text-3xl mb-2"></i>
+                <p class="font-bold">Beauté & Perruques</p>
+            </div>
+            <div class="category-icon p-6 rounded-xl text-center cursor-pointer">
+                <i class="fas fa-utensils text-3xl mb-2"></i>
+                <p class="font-bold">Saveurs Locales</p>
+            </div>
+            <div class="category-icon p-6 rounded-xl text-center cursor-pointer">
+                <i class="fas fa-gem text-3xl mb-2"></i>
+                <p class="font-bold">Artisanat</p>
+            </div>
+            <div class="category-icon p-6 rounded-xl text-center cursor-pointer">
+                <i class="fas fa-leaf text-3xl mb-2"></i>
+                <p class="font-bold">Bio & Santé</p>
             </div>
         </div>
     </section>
 
-    <!-- CATÉGORIES -->
-    <section class="max-w-7xl mx-auto px-6 py-12">
-        <h3 class="text-3xl font-bold mb-8 text-center">Catégories populaires</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            <!-- Ajoute tes catégories ici -->
-            <div class="bg-white rounded-2xl p-6 text-center shadow hover:shadow-lg cursor-pointer">
-                <i class="fas fa-mobile-alt text-5xl text-orange-500 mb-4"></i>
-                <p class="font-semibold">Téléphones & Accessoires</p>
+    <section class="max-w-7xl mx-auto px-4 py-12">
+        <h2 class="text-3xl font-bold border-l-8 border-yellow-500 pl-4 mb-8">Sélection de Presley</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8" id="productGrid">
             </div>
-            <div class="bg-white rounded-2xl p-6 text-center shadow hover:shadow-lg cursor-pointer">
-                <i class="fas fa-tshirt text-5xl text-pink-500 mb-4"></i>
-                <p class="font-semibold">Mode & Beauté</p>
-            </div>
-            <div class="bg-white rounded-2xl p-6 text-center shadow hover:shadow-lg cursor-pointer">
-                <i class="fas fa-utensils text-5xl text-green-500 mb-4"></i>
-                <p class="font-semibold">Supermarché</p>
-            </div>
-            <!-- Ajoute d'autres catégories facilement -->
-        </div>
     </section>
-
-    <!-- PRODUITS EN VEDETTE -->
-    <section id="products" class="max-w-7xl mx-auto px-6 py-12 bg-white">
-        <div class="flex justify-between items-center mb-8">
-            <h3 class="text-3xl font-bold">Produits exaucés du jour</h3>
-            <a href="#" class="text-orange-500 font-medium flex items-center gap-2">Voir tout <i class="fas fa-chevron-right"></i></a>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6" id="productGrid">
-            <!-- Les produits seront ajoutés par JavaScript -->
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-gray-900 text-gray-400 py-12">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
-                <div>
-                    <h4 class="text-white text-xl font-bold mb-4">Presley Exaucé Market</h4>
-                    <p class="text-sm">Le marketplace qui exauce tous tes besoins à Dakar et au Sénégal.</p>
-                </div>
-                <div>
-                    <h5 class="text-white font-semibold mb-4">Liens rapides</h5>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-white">Comment ça marche</a></li>
-                        <li><a href="#" class="hover:text-white">Devenir vendeur</a></li>
-                        <li><a href="#" class="hover:text-white">Livraison</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="text-white font-semibold mb-4">Paiement & Livraison</h5>
-                    <p class="text-sm">Wave • Orange Money • Free Money • Cash on Delivery</p>
-                </div>
-                <div>
-                    <h5 class="text-white font-semibold mb-4">Suivez-nous</h5>
-                    <div class="flex gap-4 text-2xl">
-                        <i class="fab fa-facebook hover:text-white cursor-pointer"></i>
-                        <i class="fab fa-instagram hover:text-white cursor-pointer"></i>
-                        <i class="fab fa-whatsapp hover:text-white cursor-pointer"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-xs">
-                © 2026 Presley Exaucé Market - Dakar, Sénégal. Tous droits réservés.
-            </div>
-        </div>
-    </footer>
 
     <script>
-        // Produits de démonstration (tu pourras les remplacer par des données réelles plus tard)
-        const products = [
-            { id: 1, name: "iPhone 14 Pro Max", price: "450000", img: "https://picsum.photos/id/20/300/300", seller: "Tech Dakar" },
-            { id: 2, name: "Chaussures Nike Air Force", price: "35000", img: "https://picsum.photos/id/201/300/300", seller: "Mode Exaucé" },
-            { id: 3, name: "Riz 50kg - Qualité Premium", price: "28000", img: "https://picsum.photos/id/312/300/300", seller: "Supermarché Baay Fall" },
-            { id: 4, name: "Écran TV 55\" Samsung", price: "320000", img: "https://picsum.photos/id/180/300/300", seller: "Electro Presley" },
-            { id: 5, name: "Crème Nivea pour le visage", price: "8500", img: "https://picsum.photos/id/251/300/300", seller: "Beauté Dakaroise" }
+        const afroProducts = [
+            { name: "Lace Frontale Brésilienne 26\"", price: "75.000", cat: "Beauté", img: "https://images.unsplash.com/photo-1595475038784-bbe439ff41e6?auto=format&fit=crop&w=300&q=80" },
+            { name: "Thiéboudienne Royal (Pilaou)", price: "5.500", cat: "Cuisine", img: "https://images.unsplash.com/photo-1628143431520-22129e925b74?auto=format&fit=crop&w=300&q=80" },
+            { name: "Bouclée Royale 20\"", price: "88.000", cat: "Beauté", img: "https://images.unsplash.com/photo-1595475207225-428b62bda831?auto=format&fit=crop&w=300&q=80" },
+            { name: "Miel Pur d'Acacia (Bio)", price: "12.000", cat: "Santé", img: "https://images.unsplash.com/photo-1587049352846-4a222e784d38?auto=format&fit=crop&w=300&q=80" }
         ];
 
-        // Afficher les produits
-        function displayProducts() {
+        function loadProducts() {
             const grid = document.getElementById('productGrid');
-            grid.innerHTML = '';
-            
-            products.forEach(product => {
-                const card = document.createElement('div');
-                card.className = 'product-card bg-white rounded-2xl overflow-hidden border border-gray-100';
-                card.innerHTML = `
-                    <img src="${product.img}" alt="${product.name}" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <p class="text-xs text-gray-500">${product.seller}</p>
-                        <h4 class="font-semibold text-sm line-clamp-2 h-10">${product.name}</h4>
-                        <div class="flex justify-between items-center mt-4">
-                            <p class="text-lg font-bold text-orange-600">${product.price} FCFA</p>
-                            <button onclick="addToCart(${product.id})" 
-                                    class="bg-orange-500 text-white px-5 py-2 rounded-xl text-sm font-medium hover:bg-orange-600">
-                                Ajouter
-                            </button>
+            afroProducts.forEach(p => {
+                grid.innerHTML += `
+                    <div class="product-card bg-white rounded-2xl shadow-sm border border-orange-100 overflow-hidden">
+                        <img src="${p.img}" class="w-full h-56 object-cover">
+                        <div class="p-5">
+                            <span class="text-xs font-bold text-yellow-600 uppercase">${p.cat}</span>
+                            <h3 class="font-bold text-lg mt-1">${p.name}</h3>
+                            <div class="flex justify-between items-center mt-4">
+                                <span class="text-xl font-black text-green-800">${p.price} CFA</span>
+                                <button onclick="add()" class="bg-red-800 text-white p-2 rounded-lg"><i class="fas fa-plus"></i></button>
+                            </div>
                         </div>
                     </div>
                 `;
-                grid.appendChild(card);
             });
         }
 
-        // Panier simple (compteur)
-        let cartCount = 0;
-        function addToCart(id) {
-            cartCount++;
-            document.getElementById('cartCount').textContent = cartCount;
-            
-            // Animation simple
-            const cartIcon = document.getElementById('cartBtn');
-            cartIcon.classList.add('scale-125');
-            setTimeout(() => cartIcon.classList.remove('scale-125'), 300);
-            
-            alert(`Produit ajouté au panier ! (ID: ${id})`);
+        let count = 0;
+        function add() {
+            count++;
+            document.getElementById('cartCount').innerText = count;
         }
 
-        // Scroll vers les produits
-        function scrollToProducts() {
-            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Recherche basique
-        document.getElementById('searchInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const term = this.value.toLowerCase();
-                alert(`Recherche pour "${term}" en cours... (dans la version complète, cela filtrera les produits)`);
-            }
-        });
-
-        // Initialisation
-        window.onload = function() {
-            displayProducts();
-            console.log('%cPresley Exaucé Market - Script de démarrage chargé avec succès !', 'color: orange; font-weight: bold;');
-        };
+        window.onload = loadProducts;
     </script>
 </body>
 </html>
