@@ -154,3 +154,42 @@
     </script>
 </body>
 </html>
+<script>
+async function processCommand() {
+    const input = document.getElementById('userInput').value;
+    const consoleBox = document.getElementById('console');
+    const responseArea = document.getElementById('ai-response');
+    
+    if(!input) return;
+
+    // 1. Afficher la question de l'utilisateur
+    const timestamp = new Date().toLocaleTimeString();
+    consoleBox.innerHTML += `<div style="color:white; margin-top:10px;">> [USER ${timestamp}]: ${input}</div>`;
+    
+    // 2. Afficher que l'IA travaille (Synchronisation)
+    responseArea.innerHTML = `<div style="color:#f1c40f;">[SYSTEM] : Connexion au cerveau Groq/Gemini en cours...</div>`;
+    
+    try {
+        // 3. APPEL RÉEL À TON SERVEUR (Le pont vers ton HP)
+        const response = await fetch('http://127.0.0.1:5000/ask-ai', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: input })
+        });
+
+        const data = await response.json();
+
+        // 4. Afficher la vraie réponse de l'IA
+        const aiText = data.choices[0].message.content;
+        responseArea.innerHTML = `<div style="color:var(--neon-blue); margin-top:10px;">[HARMONIX AI] : ${aiText}</div>`;
+        
+    } catch (error) {
+        // En cas d'erreur de connexion
+        responseArea.innerHTML = `<div style="color:red;">[ERREUR] : Impossible de joindre le serveur. Vérifie que ton terminal noir est bien ouvert !</div>`;
+    }
+
+    document.getElementById('userInput').value = "";
+    consoleBox.scrollTop = consoleBox.scrollHeight;
+}
+</script>
+
