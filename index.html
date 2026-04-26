@@ -1488,3 +1488,35 @@ Réponds de façon amicale et utile, en français. Tu peux suggérer des produit
     </script>
 </body>
 </html>
+<script>
+// Cette fonction va lire le fichier JSON créé par Python
+async function chargerAntenne() {
+    try {
+        const response = await fetch('antenne_data.json');
+        const data = await response.json();
+        const grid = document.getElementById('harmonix-grid');
+        
+        // On vide le message de chargement
+        grid.innerHTML = '';
+
+        // On affiche chaque pays avec son drapeau et sa news
+        data.forEach(p => {
+            const card = `
+                <div class="harmonix-card">
+                    <div class="harmonix-pays">📍 ${p.pays}</div>
+                    <div class="harmonix-news">${p.news}</div>
+                    <a href="${p.lien}" target="_blank" class="harmonix-lien">Voir la source</a>
+                </div>
+            `;
+            grid.innerHTML += card;
+        });
+    } catch (error) {
+        document.getElementById('harmonix-grid').innerHTML = 
+            '<p style="color:#e94560; text-align:center;">⚠️ Antenne en attente de signal (Relance le script Python)...</p>';
+    }
+}
+
+// Lancer le chargement au démarrage
+chargerAntenne();
+</script>
+
