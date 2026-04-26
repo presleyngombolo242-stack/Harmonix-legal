@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -180,6 +180,115 @@
             </div>
         </div>
     </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmonix Pro Market & TV | Presley Ngombolo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        body { font-family: 'Roboto', sans-serif; background-color: #f4f4f7; color: #333; }
+        .search-bar { border: 2px solid #ff6600; }
+        .btn-primary { background-color: #ff6600; color: white; transition: background 0.3s; }
+        .btn-primary:hover { background-color: #e65c00; }
+        .product-card { background: white; border-radius: 8px; overflow: hidden; transition: box-shadow 0.3s; border: 1px solid #eee; }
+        .product-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-color: #ff6600; }
+        .badge { font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+        .badge-tech { background-color: #e0f2fe; color: #0369a1; }
+        .badge-beauty { background-color: #fce7f3; color: #9d174d; }
+        .badge-video { background-color: #fee2e2; color: #dc2626; }
+        
+        /* Zone Pub Style */
+        .ad-container { background: #fffbeb; border: 1px dashed #f59e0b; text-align: center; padding: 10px; margin: 20px 0; border-radius: 8px; }
+    </style>
+</head>
+<body>
+
+    <header class="bg-white shadow-sm sticky top-0 z-50 px-4 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-6">
+            <div class="text-2xl font-bold flex items-center gap-2">
+                <span class="text-orange-600"><i class="fa-solid fa-play-circle"></i></span>
+                HARMONIX <span class="text-sm font-light text-gray-400">TV & MARKET</span>
+            </div>
+            <div class="flex-1 max-w-2xl flex items-center">
+                <input type="text" placeholder="Rechercher des produits ou des vidéos..." class="w-full search-bar rounded-l-full px-5 py-2.5 outline-none text-sm">
+                <button class="btn-primary rounded-r-full px-6 py-2.5 font-bold text-sm"><i class="fa-solid fa-search"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-10">
+
+        <section class="mb-16">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                <span class="w-8 h-1 bg-red-600 rounded-full"></span>
+                Harmonix TV : Streaming Gratuit
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 bg-black rounded-2xl overflow-hidden shadow-2xl aspect-video">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <div class="ad-container">
+                        <span class="text-[10px] text-gray-400 block mb-2">PUBLICITÉ</span>
+                        <div class="h-32 flex items-center justify-center text-gray-400 italic">
+                            Espace Pub Réserve - Revenus via Connexion
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-4 rounded-xl border border-gray-100">
+                        <h4 class="font-bold mb-3 text-sm">Prochaines vidéos</h4>
+                        <div class="flex gap-3 mb-3 cursor-pointer hover:bg-gray-50 p-1 rounded">
+                            <div class="w-20 h-12 bg-gray-200 rounded"></div>
+                            <p class="text-xs font-medium">Tutoriel Cyber : Sécuriser son site Render</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-container max-w-4xl mx-auto py-4">
+             <span class="text-[10px] text-gray-400 block">ADVERTISEMENT</span>
+             <p class="text-orange-600 font-bold">Promo : -20% sur les mèches chez Presley Beauty !</p>
+        </div>
+
+        <h2 class="text-2xl font-bold mt-12 mb-8 flex items-center gap-3">
+            <span class="w-8 h-1 bg-orange-600 rounded-full"></span>
+            Boutique & Services
+        </h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="product-card">
+                <div class="h-52 overflow-hidden">
+                    <img src="https://images.pexels.com/photos/1689731/pexels-photo-1689731.jpeg?auto=compress&cs=tinysrgb&w=600" class="w-full h-full object-cover">
+                </div>
+                <div class="p-4">
+                    <span class="badge badge-beauty">Beauté</span>
+                    <h3 class="font-medium text-sm mt-1.5 h-10 line-clamp-2">Lace Frontale Brésilienne 26"</h3>
+                    <div class="flex justify-between items-end mt-4">
+                        <span class="text-xl font-bold text-orange-600">75.000 CFA</span>
+                        <button class="bg-gray-100 text-orange-600 w-8 h-8 rounded-full flex items-center justify-center"><i class="fa-solid fa-cart-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 mt-20 py-12 px-4 text-center">
+        <p>© 2026 HARMONIX ENGINE | DEVELOPED BY PRESLEY NGOMBOLO</p>
+    </footer>
+
+    <script>
+        console.log("Harmonix Engine : Monétisation Active");
+    </script>
 
 </body>
 </html>
